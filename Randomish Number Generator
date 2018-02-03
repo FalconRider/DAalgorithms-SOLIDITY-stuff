@@ -1,0 +1,48 @@
+pragma solidity ^0.4.18;
+
+// Hash something  and then shape it into a number of specified digits length hash it plus one
+// ________________________
+//ie the hash for 100 17385872270140913825666367956517731270094621555228275961425792378517567244498
+//   to    4 digits
+  
+    //CryptoZombie lines that inspired this one
+    //uint dnaDigits = 16;
+    //uint dnaModulus = 10 ** dnaDigits;
+    //  --------------------------------
+    //uint rand = uint(keccak256(_str));
+    //return rand % dnaModulus;
+  
+
+contract HashAnumber {
+
+
+uint hashShort;
+
+// Constructor not neeeded
+
+
+function HowManyDigits(uint digitsNumber) public pure returns(uint Range0to ) {
+uint hashCut = 10 ** digitsNumber;
+return hashCut-1;
+}
+
+
+
+  
+
+function GetResult(uint enterAnumber,uint digitsNber) public pure returns(uint) {
+uint hashOut = uint(keccak256((enterAnumber)));
+uint hashRnd = hashOut;
+uint hashCut = 10 ** digitsNber;
+return hashRnd % hashCut;
+}
+
+
+
+function EnterMynumber(uint enterAnumber) public pure returns(uint) {
+uint hashOut = uint(keccak256(enterAnumber));
+        return hashOut;
+
+}
+
+}
