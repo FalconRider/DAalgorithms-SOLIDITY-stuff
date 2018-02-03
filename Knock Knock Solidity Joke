@@ -1,0 +1,47 @@
+pragma solidity ^0.4.18;
+
+/*  Knock Knock
+          Anyone remember knock knock jokes?
+          
+          Purpose : to show what exactly 
+          contract input entries look like in the contract	
+          
+          Enter an AMOUNT   in the Value. 
+          Play with wei or gwei or finny oe Ether selctor
+          Note the test Account your using - switch around
+*/
+
+// Just a little Solidity coding practice
+
+contract KnockKnock {
+    
+    string last;
+    address yourname;
+    uint howMuch;
+   
+// Constructor function/ same name as contract, only runs once/ set stuff up
+  
+   function KnockKnock() public payable {
+   yourname = msg.sender;
+   howMuch = msg.value;
+   last = " To Who You Too!!!!!!";
+}
+
+
+// Go ahead function
+   function KNOCK_KNOCK() public view returns (address Whos_there) {
+   return yourname;
+ }
+
+// Second time  function
+   function How_Much() public view returns(uint){
+   return howMuch;
+   }
+   
+// Third time  function
+   function TO_WHO() public view returns(string){
+   return last;
+}
+  
+ 
+}
