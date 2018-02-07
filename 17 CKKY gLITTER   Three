@@ -1,0 +1,97 @@
+pragma solidity ^0.4.19;
+/*                        *****  CKTTY   gLITTER (Level Three)  ****** (CKL) 
+-------Level Three--- 
+Problems with Level Two were:
+1, Customer can overpay.
+2, Owner can't retire. Need Transfer Ownership.
+
+
+ If you own a CK or especially if you have more than one,  
+ we're here to help!  Buy a Bag or two or more. This is a 1 product test store. We only sell imaginary 10 lb bags of CKL.  Start price 10 ETH.
+just a Solidity exercise for test network use only. Switch among accounts to test all.
+
+
+
+So more attempted solutions here.
+
+  don' forget to enter ETH VALUE to make contract balance change
+  Think I need the hitmes to keep button open and interactive.Live 
+  with the yellow unused errors, still works.
+ */ 
+ 
+
+// --------------------------------------------------main Contract
+contract gLitterFactory {
+    uint pricePerBag = 10;
+    uint bagsBought;
+    uint purchaseCost;
+    uint bagsSold;
+    uint totalSpent;
+   
+    
+  mapping (address => uint) balance;
+  
+   //  -----------------------------------------------ownable bitz
+
+   address public owner;
+   function gLitterFactory() public {
+    owner = msg.sender;
+  }
+  // Throws if called by any account other than the owner.
+     modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+//-------------solve 2 ------------------------------------transferable bitz
+ function transferOwnership(address newOwner) public onlyOwner {
+    require(newOwner != address(0));
+   // OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+
+
+//-----------------------------------------------------make a purchase
+  function BUYaBAG(uint purchaseQuantity) public payable returns (bool){
+    purchaseCost =  purchaseQuantity  *  pricePerBag;
+//    solv  1---------------V-----------changed to just = -------------
+    require (msg.value == purchaseCost); 
+    totalSpent = totalSpent +purchaseCost;
+    bagsBought = bagsBought  + purchaseQuantity;
+    bagsSold = bagsSold + purchaseQuantity;
+  }
+ //------------------------------------------------Bank Balance----
+function bankBalance(string hitme) public view returns (uint) {
+    return this.balance;
+}
+//----------------------------------------------------Total Bought
+function HowManyBought(string hitme) public view returns (uint) {
+    return bagsBought;
+}
+//--------------------------------------new-------------Price now
+function CurrentPrice(string hitme) public view returns (uint) {
+    return pricePerBag;
+}
+//------------------------------------------------------Tot spent
+function HowMuchSpent(string hitme) public view returns (uint) {
+    return totalSpent;
+}
+//------------------------------------------------------Tot spent
+function CurrentCustomer(string hitme) public view returns (address) {
+    return msg.sender;
+}
+//--------------------------------------------------------total sold
+function TotalbagsSold(string hitme) public view returns (uint) {
+    return bagsSold;
+}
+ 
+//-------------------------------------------------------change price
+function setPrice(uint pricePerBagNew) public  onlyOwner {
+    pricePerBag = pricePerBagNew;
+  }
+  
+// ---------------------------------------------Empty the Bank 
+function clearBank(string hitme) public onlyOwner returns (uint) {
+   owner.transfer(this.balance);
+    
+}
+}
