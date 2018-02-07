@@ -1,0 +1,30 @@
+pragma solidity ^0.4.19;
+
+
+/*     A test of Button Visibilities
+    Same function with 4  different types
+   1Public, 2Private, 3Internal, 4External
+   
+Note that Remix only gives you 2 buttons - 1 and 4
+It's magic!     
+ */ 
+ 
+contract WhatDoYouSee {
+    
+//--------------------------------------------------Public
+function Check1(string hitme) public pure  returns (string) {
+    return hitme;
+}
+//--------------------------------------------------Private
+function Check2(string hitme) private pure returns (string) {
+    return hitme;
+}
+//--------------------------------------------------Internal
+function Check3(string hitme) internal pure returns (string) {
+    return hitme;
+}
+//--------------------------------------------------External
+function Check4(string hitme) external pure returns (string) {
+    return hitme;
+}
+}
