@@ -1,0 +1,28 @@
+pragma solidity ^0.4.18;
+
+contract TesttheRange{
+    
+    // pick an integer number between 0 and 10
+    string good;
+    string outofrange;
+
+
+// constructor function
+
+function TesttheRange() public{
+   
+    good = "  good, you're in the range";
+    outofrange = "Stick to a number between 1 and 10";
+}
+
+
+function INPUT(uint inputnumber) public view returns (string){
+     
+      if(inputnumber > 10) {
+          return outofrange;
+          
+      }else{
+          return good;
+      }
+}
+}
