@@ -1,0 +1,46 @@
+pragma solidity ^0.4.18;
+/*    Proof of Duck
+
+     If it walks like a duck 
+     and it talks like a duck
+	 it must be a DUCK!
+*/
+
+// Just  a little Solidity coding practice
+
+
+contract DUCK {
+    string takeStep;
+    string talkNow;
+    string wadaYagot;
+
+// Duck constructor
+  
+   function DUCK() public{
+   takeStep ="Waddle Waddle";
+   talkNow = "Quack Quack";
+   wadaYagot ="DUCK";
+}
+//   Howz it walk function
+
+   function walk() public view returns (string){
+   return takeStep;
+}
+
+// Howz it talk function
+
+   function talk () public view returns(string){
+   return talkNow;
+}
+
+// So what daya got  function
+
+   function sowhatIsit() public view returns(string){
+   return wadaYagot;
+}
+
+// Say it again   function
+
+   function sayitAgain() public view returns(string itsa){
+   return wadaYagot;
+}}
