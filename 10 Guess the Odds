@@ -1,0 +1,41 @@
+pragma solidity ^0.4.18;
+
+/*  Probable Outcomes Gag
+What are the odds of guessing which 1 of 2 alternatives is correct?
+With 1 try
+With 2 trys
+	
+*/
+
+// Just a little Solidity coding practice
+
+contract WhatAreTheOdds {
+    uint once;
+    uint twice;
+    string last;
+
+//  constructor function
+  
+   function WhatAreTheOdds() public {
+   once= 50;
+   twice=95;
+   last =" You just cant help some people---(lets see just how long a string can you put here ........................)------------------ffttfftff!!!!!!";
+}
+
+
+// First Guess Odds  function
+   function FirstGuess() public view returns (uint percent) {
+   return once;
+ }
+
+// Second Guess Odds   function
+   function One_More_Time() public view returns(uint percent){
+   return twice;
+   }
+   
+// Third time  function
+   function WhyNot100 () public view returns(string){
+   return last;
+}
+   
+}
