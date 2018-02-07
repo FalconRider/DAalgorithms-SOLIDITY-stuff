@@ -1,0 +1,30 @@
+pragma solidity ^0.4.18;
+//   Another Daalgorithm   by FaRdr     Solidity Learning Tool  
+
+contract testofifstatement{
+    
+    // pick an integer number between 1 and 10
+    // assume right number is 5.5 to limit to 2 choices
+    // yes -  this means you can't win. 
+    
+string high;
+string low;
+
+// constructor function
+
+function testofifstatement() public{
+    high = "too high,try again";
+    low = "too low, take another shot";
+}
+
+
+function INPUT(uint inputnumber) public view returns (string){
+     
+      if(inputnumber > 5) {
+          return high;
+          
+      }else{
+          return low;
+      }
+}
+}
