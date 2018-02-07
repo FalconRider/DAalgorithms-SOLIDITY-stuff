@@ -1,0 +1,68 @@
+pragma solidity ^0.4.19;
+
+/*  -------Level one--- A simple store--------no controls--------
+
+                      *****  CKTTY  gLITTER   ***ONE*** (CKL) 
+ If you own a CK or especially if you have more than one,  
+ we're here to help!  Buy a Bag or two or more.
+   -----------------------------------------------------
+ This is a 1 product test store. We only sell imaginary 10 lb bags of CKL.
+just a Solidity exercise of the  -  for test network use only. 
+  don' forget to enter VALUE to make contract balance change
+ */ 
+ 
+// --------------------------------------------main Contract
+contract gLitterFactory {
+    uint pricePerBag = 10;
+    uint bagsBought;
+    uint purchaseCost;
+    uint bagsSold;
+    uint totalSpent;
+   // address owner;
+    
+  mapping (address => uint) balance;
+
+//-----------------------------------------------------make a purchase
+// should be sending(entering)  1 ETH per bag ordered. 
+//Honor system - this version . No money sent check    
+    //No customer has money check.  or Ownership of Bank check
+  //-------------------------------------------------------MAIN----
+  function BUYaBAG(uint purchaseQuantity) public payable {
+
+    purchaseCost =  purchaseQuantity  *  pricePerBag;
+    totalSpent = totalSpent +purchaseCost;
+    bagsBought = bagsBought  + purchaseQuantity;
+    bagsSold = bagsSold + purchaseQuantity;
+  }
+ //------------------------------------------------Bank Balance----
+function bankBalance(string hitme) public view returns (uint) {
+    return this.balance;
+}
+//----------------------------------------------------Total Bought
+function HowManyBought(string hitme) public view returns (uint) {
+    return bagsBought;
+}
+//------------------------------------------------------Tot spent
+function HowMuchSpent(string hitme) public view returns (uint) {
+    return totalSpent;
+}
+//--------------------------------------------------------total sold
+function TotalbagsSold(string hitme) public view returns (uint) {
+    return bagsSold;
+}
+ 
+//-------------------------------------------------------change price
+function setPrice(uint pricePerBagNew) public  {
+    pricePerBag = pricePerBagNew;
+  }
+  
+// ---------------------------------------------Empty the Bank 
+function clearBank(string hitme) public returns (uint) {
+ //  owner = msg.sender;
+   msg.sender.transfer(this.balance);
+
+
+   
+    
+}
+}
