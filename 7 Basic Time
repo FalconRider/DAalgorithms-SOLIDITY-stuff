@@ -1,0 +1,36 @@
+pragma solidity ^0.4.18;
+
+/*  What time is it, roughly, measured since the Unix epoch, in seconds'
+   Hit "How Long Run" a few times, a few seconds apart
+
+    Returns current block time
+	Just a little Solidity coding practice
+*/
+
+ 
+
+contract TimePlease {
+    uint time;
+    uint starttime;
+    
+    
+//  Since this constructor function only runs once it captures start    
+
+function TimePlease () public {
+    
+    starttime = block.timestamp;
+}
+
+// Go ahead function
+   function WazDaTimeNow() public view returns (uint) {
+   return block.timestamp;
+ }
+ 
+//  Wait a bit and then try this, and again, and again 
+
+
+function HowLongRun() public view returns (uint in_seconds) {
+    
+   return block.timestamp - starttime;
+}
+}
