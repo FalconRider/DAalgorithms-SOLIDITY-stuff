@@ -1,0 +1,22 @@
+pragma solidity ^0.4.19;
+
+// found the guts to this on SO
+// - added Solidity Contract formating for Remix passing
+
+contract ReverseAString{
+
+function reverseValue(string _base) public pure returns(string){
+        bytes memory _baseBytes = bytes(_base);
+        assert(_baseBytes.length > 0);
+
+        string memory _tempValue = new string(_baseBytes.length);
+        bytes memory _newValue = bytes(_tempValue);
+
+
+        for(uint i=0;i<_baseBytes.length;i++){
+            _newValue[ _baseBytes.length - i - 1] = _baseBytes[i];
+        }
+
+        return string(_newValue);
+    }
+}
