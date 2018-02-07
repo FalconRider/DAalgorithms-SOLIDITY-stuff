@@ -1,0 +1,34 @@
+pragma solidity ^0.4.18;
+
+//  first Bank of Bob
+
+/*    Enter 20 or so  in VALUE box, uptop,  not beside the button, enter a different 
+value,say 43, beside button - change wei to either, sos ya notice,- hit buy button
+Check account - Ox147--- balance - switch among accounts, repeat
+Note how Bobs balance can be different from banks Balance.
+Contract vs Counter. And how transaction fees make for odd numbers 
+in the balances left inside the account numbers.  
+*/
+
+contract OnlineStore {
+    
+uint bobBalance;
+uint balance;    
+    
+function buySomething(uint amountToDeposit) external payable {
+    bobBalance =+ amountToDeposit;
+    // urinary warning ignored
+}
+    
+function bankBalance(string hitme) public view returns (uint) {
+    return this.balance;
+    
+    //I think I need that unused string to keep the contract interactive on Ropsten
+}
+  function bobsBalance(string hitme) public view returns (uint) {
+    return bobBalance;
+    
+    //I think I need that unused string to keep the contract interactive on Ropsten  
+}   
+    
+}
