@@ -1,0 +1,56 @@
+pragma solidity ^0.4.18;
+/*  DaMISSION IMPOSSIBLE
+    Great Movies!  Wanna be Mr. Phelps?
+          
+*/
+// Just a little Solidity coding practice
+
+contract daMission {
+    
+string theJob;
+string last;	
+uint timeLeft;
+string outoftime;
+uint starttime;
+string raise;
+
+    
+// Constructor function/ same name as contract, only runs once/ set  ups
+  
+function daMission() public payable {
+starttime = block.timestamp;
+theJob=" Infiltrate AMAZON and be a BAD Apple, or the other way around";
+last = "BOOOOOOOM";  
+raise =  "Great, you get a raise";
+}
+
+
+// Go ahead function
+
+ function MISSION() public view returns (string Mr_Phelps_You_have_60_seconds_to_decide_on_the__mission_or_this_message_will_self_destruct__) {
+ return theJob;
+ }
+
+
+// Count down - an approximation 
+   
+
+  function HowLongLeft() public view returns (uint seconds_left_or_this_message_will_self_destruct) {
+   return 60-(block.timestamp - starttime);
+  // if timeLeft < 1;
+   //thejob = outof time; 
+   return timeLeft;
+ }
+
+// ACCEPT
+   function YES() public view returns(string){
+   return raise;
+   }
+   
+//REJECT
+   function Cant_Do_That() public view returns(string){
+   return last;
+}
+
+ 
+}
