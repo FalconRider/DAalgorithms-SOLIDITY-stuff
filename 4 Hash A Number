@@ -1,0 +1,32 @@
+pragma solidity ^0.4.18;
+
+// Hash something  and then hash it plus one
+//  Test by using 2 numbers 1 apart in right order 
+//  ie 99 and 100
+
+contract HashAnumber {
+
+
+uint plusNumber;
+
+// Constructor
+function HashAnumber() public  {
+plusNumber = 1;
+
+}
+
+
+
+function HashSameNumberMinusOne(uint enterAnumber) public pure returns(uint) {
+uint hashOut = uint(keccak256(enterAnumber+1));
+return hashOut;
+
+}
+function EnterMynumber(uint enterAnumber) public pure returns(uint) {
+uint hashOut = uint(keccak256(enterAnumber));
+        return hashOut;
+
+}
+
+
+}
