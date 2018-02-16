@@ -1,0 +1,56 @@
+pragma solidity ^0.4.18;
+
+//     SOLIDITY PAINT MIXER
+
+/*Just a little coding practice and headache exploration.
+CryptoZombies inspired.  
+Enter  2 of  "red"   or "blue"  or    "yellow". Any order, a comma between.
+
+Get orange green or purple , or try again, if you messed up.
+Worked in Remix, couldn't see result in EthFiddle
+
+FaRdr
+*/
+
+contract paintMixer {
+   
+    
+  
+    
+    uint r;
+    
+    string t = "try again";
+    string o = "orange";
+    string g = "green";
+    string p = "purple";
+
+
+
+function MIX_PAINT(string x, string y) public  returns(string){
+
+    if ((keccak256(x) == keccak256("red")) && (keccak256(y)==keccak256("blue"))){
+    r += 19;
+    } else if ((keccak256(x)==keccak256("blue")) && (keccak256(y)==keccak256("red"))) {
+    r += 19;
+    } else if ((keccak256(x)==keccak256("red")) && (keccak256(y)==keccak256("yellow"))) {
+    r += 190;
+    } else if ((keccak256(x)==keccak256("yellow")) && (keccak256(y)==keccak256("red"))) {
+    r += 190;
+    } else if ((keccak256(x)==keccak256("blue")) && (keccak256(y)==keccak256("yellow"))) {
+    r += 690;
+    } else if ((keccak256(x)==keccak256("yellow")) && (keccak256(y)==keccak256("blue"))) {
+    r += 690;
+    } else {
+    r=999;
+    }
+    
+    if ((keccak256(r)==keccak256(uint(19)))) {
+    return p;
+    } else if ((keccak256(r)==keccak256(uint(190)))) {
+    return o;
+    } else if((keccak256(r)==keccak256(uint(690)))) {
+    return g;
+    } else 
+    return t;
+    }
+    }
