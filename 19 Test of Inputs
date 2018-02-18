@@ -1,0 +1,57 @@
+pragma solidity ^0.4.18;
+
+ // just a test - see what comes out
+ 
+contract testofInputs  {
+    
+   //---------------------------------------------------msg
+    
+function testSender() public view returns(address){
+ 
+     return msg.sender;
+     
+   }
+   
+
+  
+    function testValue()public view  returns(uint){
+ 
+      return msg.value;
+      
+   }
+   
+    function testData()public view returns(bytes){
+ 
+      return msg.data;
+      
+   }
+   
+    function testGas()public view returns(uint){
+ 
+      return msg.gas;
+   }
+   
+   
+  // msg.sig (bytes4): first four bytes of the calldata (i.e. function identifier)
+
+    function testSig()public view returns(bytes4){
+ 
+      return msg.sig;
+
+    }
+    //----------------------------------------------------------tx
+    
+     function testOrigin()public view returns(address){
+ 
+      return tx.origin;
+      
+   }
+    
+    //tx.gasprice (uint): gas price of the transaction
+
+     function testGasprice()public view returns(uint){
+ 
+      return tx.gasprice;
+}
+
+}
