@@ -1,0 +1,77 @@
+pragma solidity ^0.4.18;
+
+/* ASSET Serial Number Generator
+
+-----------------------------just another coding exercise ----------------FR----
+
+OLSN:  A unique consistant OFFICIAL LOOKING Serial Number for each 721 Asset 
+-  format OLSN: 10017896
+
+made by generating randomish number 0 to 9998 and adding 10000001 + 1000 + secret Nonce ; )
+based on  a hidden recorded birthing order, which wont change.
+
+Idea is to enter number in a constructed Front End to view Graffic of aquired asset. 
+Say to print on a certificate. Asset to mactch "catelogue, from which ordered.
+Another dimension than Name which owner can set.
+*/
+
+contract OLSN {
+
+
+uint hashCut;
+uint hashrnd;
+uint hashshort;
+uint bbserialNumber;
+uint secretNonce = 605;
+uint digitsNumber = 5 ;
+uint key5;
+uint key3;
+
+function viewShortNumber(uint birthNumber) public view  returns(uint) {
+//   test   short number  4 digits   enter asset birth number  ie  1,2,3
+
+birthNumber = birthNumber + secretNonce;
+uint hashOut = uint(keccak256((birthNumber)));
+uint hashRnd = hashOut;
+uint hashCut = 10 ** digitsNumber;
+hashshort =  hashRnd % hashCut;
+return hashshort;
+
+}
+
+function fullSerialNumber(uint birthNumber) public view returns(uint OLSN ) {
+// test full long number  enter asset number  ie 1, 2 ,3
+
+birthNumber = birthNumber + secretNonce;
+uint hashOut = uint(keccak256(birthNumber));
+uint hashRnd = hashOut;
+uint hashCut = 10 ** digitsNumber;
+hashshort =  hashRnd % hashCut;
+
+
+bbserialNumber = hashshort + 10000001+1000;
+//1000 reserved numbers;
+return bbserialNumber;
+
+}
+
+function retrievalTest(uint OLSN) public view returns(uint ASSET ) {
+    //only set up for 3 and 5 
+    
+key5 = 10092602; 
+key3  = 10053102;
+if((keccak256(OLSN) == (keccak256(key5)))) {
+
+//if (OLSN = 10092602) {
+   ASSET = 5;
+   
+} else if  ((keccak256(OLSN) == (keccak256(key3))))
+ASSET = 3;
+
+  
+   return ASSET;  
+   
+// only works for 3 or 5  for now
+}
+
+}
