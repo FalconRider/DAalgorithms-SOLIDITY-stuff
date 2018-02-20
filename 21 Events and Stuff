@@ -1,0 +1,57 @@
+/*  Playing with events and stuff
+
+    wanted to see what event firings look like in Ropesten
+    and some tracking. 	Just more codeing practice for testing
+	based on except from the famous CrtptoZombies tuts by Loom
+	
+	******** remember indexes start at zero, headcounts at 1 ******
+*/
+
+pragma solidity ^0.4.18;
+
+contract LombieFactory {
+//eeeeeeeeeeeevvvveeeeeeeeeeeeeeeeeeeeeeeeeeee event eeeeeeeeeee
+    event NewLombie(uint lombieId, string name, uint dna, address nowner);
+
+   
+   struct Lombie {
+             
+      string name;
+      uint weight;
+   }
+   
+   uint totalLombies;
+   address nowner;
+    
+    Lombie[] public lombies;
+    mapping (uint => address) public lombieToOwner;
+    mapping (address => uint) ownerLombieCount;
+    
+    
+
+    function _createLombie(string name, uint weight) public {
+        uint id = lombies.push(Lombie(name, weight)) - 1;
+        lombieToOwner[id] = msg.sender;
+        ownerLombieCount[msg.sender]++;
+        nowner = msg.sender;
+        totalLombies++;
+        
+       
+        
+
+//eeeeeeeeeeevvvvveeeeeeeeeeeeeeeeeeeeeeeeeeeeee  fire event  
+        NewLombie(id, name, weight, nowner);
+    }
+// ----------------------------Who am I  - for switchin around  on Ropesten
+function WhoAmI() public view returns (address){
+return msg.sender;
+}
+//    ---------------------------------How many Lommbies per owner -------------
+function howManyMe() public view returns (uint){
+                return ownerLombieCount[msg.sender];
+}
+//    ---------------------------------How many  -Lombies in total------------
+function howManyAll() public view returns (uint){
+                return totalLombies;
+}
+}
