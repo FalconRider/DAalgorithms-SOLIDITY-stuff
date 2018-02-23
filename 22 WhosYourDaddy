@@ -1,0 +1,48 @@
+pragma solidity ^0.4.18;
+
+/*  WhosYourDaddy
+Ownership 101,with changes and message.sender returns tests 
+
+Idea is to set up in Remix and then switch around the
+Remix user accounts to see if originaland prior ownership stuck.
+*/
+
+contract OwnableTest {   
+    
+address public grandpa;          // can't be changed
+address public daddy;           // remembers previous owner
+address public owner;            //  current owner only
+
+// -----------------constructor---same name as contract
+  function OwnableTest() public payable{
+    owner = msg.sender;// -both set to original contract deployer
+    grandpa = owner;
+    //  but daddy will be 0x0 till first transfer
+   
+
+  }
+  
+ 
+
+  function transferOwnership() public payable{
+    daddy = owner;      // preserve prior owner
+    owner = msg.sender;      // set new owner
+}
+
+function WhoAm_I() public view returns (address){
+  return msg.sender;
+  }
+  
+function WhosYourGrandpa() public view returns(address) {
+return grandpa;      //creator of contract
+}
+
+function WhosYourDaddy() public view returns(address) {
+return daddy;   // just previous owner
+}
+
+function WhosTheBoss() public view returns (address) {
+return owner;   //  current owner
+}
+
+  }                        
