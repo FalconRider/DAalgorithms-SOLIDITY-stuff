@@ -1,0 +1,65 @@
+pragma solidity ^0.4.18;
+/* 
+  Simple Bool, ifElse, counter  and Strut demo
+  
+   Inspired by Voting contracts
+   Note: bool is either true or false and
+   the default value for bool is false.
+   Compiles on Remix.
+   
+*/
+
+contract boolTest{
+
+string yesser;
+string nope;
+uint voteCount;
+
+struct Voter {
+  uint weight;
+  bool voted;
+  address delegate;
+  uint vote;
+}
+Voter voter_a;
+
+function boolTest() public {
+yesser = "yes";
+nope ="no";
+
+voter_a = Voter(1,false,msg.sender,0);
+ //  weight: 1;
+ //  voted: false,
+ //  address: 0xabc123,
+ //  vote: 0, this all no work.
+//)
+}
+
+
+function Voted_Inquire() public view returns (string) {
+if (voter_a.voted) {
+    
+    
+   // do a thing
+return yesser;
+
+} else {
+    
+   // do another thing
+return nope;
+}
+}
+
+function setToTrue () public {
+voter_a.voted = true;
+voteCount++;
+}
+
+function setToFalse() public {
+voter_a.voted = false;
+voteCount++;
+} 
+function VoteCount() public view returns(uint Votes) {
+return voteCount;
+}
+}
