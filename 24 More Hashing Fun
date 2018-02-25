@@ -1,0 +1,76 @@
+pragma solidity ^0.4.18;
+
+/*Get the Keccack256 ( a Sha3,256 ) Hash for a file name or a password. - a string only.
+   Try it again to prove you get the same, if you enter the same.
+   For Remix - code and Solidity typing practice.
+
+Try it a third time adding a SALT, short string, which should function as a SECRET password.
+And a four to check if you can type that all again. 
+
+Then a pair of same with a hard coded additional salt phrase.
+Entry format  "",""   need the backets and commas for all
+Then a Sha test for 1 - not the same!
+*/  
+
+contract HashAPhrase {
+
+
+
+string hardSalt;
+
+// Constructor   - same name as contract -runs only once at start
+
+function HashAPhrase() public  {
+hardSalt = "apple";
+
+}
+//--------------------------------------------------1-------------
+//Note- Button names can't start with a number, so's I  H'd em
+function H1kHashAPhrase(string hashPhrase) public pure returns(uint) {
+uint hashOut = uint(keccak256(hashPhrase));
+return hashOut;
+}
+function H2kHashAgain(string hashPhrase) public pure returns(uint) {
+uint hashOut = uint(keccak256(hashPhrase));
+return hashOut;
+}
+//--------------------------------------------------2-----------
+
+
+function H3kHashwithSalt(string hashPhrase, string salt) public pure returns(uint) {
+uint hashOut = uint(keccak256(hashPhrase))+uint(keccak256(salt));
+
+return hashOut;
+}
+
+
+function H4kHashwithSalt(string hashPhrase, string salt) public pure returns(uint) {
+uint hashOut = uint(keccak256(hashPhrase))+uint(keccak256(salt));
+
+return hashOut;
+}
+//-------------------------------------------------------------3--------------------------
+function H5kHashHardSalt(string hashPhrase, string salt) public view returns(uint) {
+uint hashOut = uint(keccak256(hashPhrase))+uint(keccak256(salt))+uint(keccak256(hardSalt));
+
+return hashOut;
+}
+
+function H6kHashHardSalt(string hashPhrase, string salt) public view returns(uint) {
+uint hashOut = uint(keccak256(hashPhrase))+uint(keccak256(salt))+uint(keccak256(hardSalt));
+
+return hashOut;
+}
+// And just to see if they're the same  sha vs keccak
+
+function H7HashSHA(string hashPhrase) public pure returns(uint) {
+uint hashOut = uint(sha256(hashPhrase));
+return hashOut;
+}
+function H8HashSHA(string hashPhrase) public pure returns(uint) {
+uint hashOut = uint(sha256(hashPhrase));
+return hashOut;
+}
+//  They are not! Who new?
+
+}
