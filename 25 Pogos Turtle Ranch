@@ -1,0 +1,136 @@
+pragma solidity ^0.4.17;
+
+/*    --- Pogo's Turtle Ranch  ---  
+ Boarding and sale of new and resale Turtles. The Story    LEVEL 1
+Pogo's Turtle Riding Stables only has space for 16 turtles at a given time.
+He will sell you a Riding Turtle, and board it, for your private riding.
+His trained Turtles sell for 1 ETH. On Level 1 all Turtles are boarded.
+
+
+          ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  ^  ^  ^  ^ ^  ^  
+The Barn |0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|
+
+A Remix coding exercise inspired by Truffles Pet Shop example.
+*/
+
+contract PogosTurtlesFarm {
+
+uint turtlesinBunks;    // Max 16, can be less, but 16 for L1
+uint turtlesOwned;      // by Pogo all for sale
+uint turtlesBoarded;    // owned by customers
+
+uint turtleSalesNo;      // How many sold tracking
+uint turtlePrice;        // Current Market price(L1 - fixed)
+uint turtleSalesEth;     // Sales tracking for Tax purposes
+
+
+address ranchOwner;
+
+address[16] public turtlesBunks;    //the Array
+
+//--------------------------------------constructor-----------
+
+function PogosTurtlesFarm() public {
+    
+turtlesinBunks = 16;
+turtlesOwned = 16; 
+turtlesBoarded=0;
+
+turtlePrice = 1 ether;
+turtleSalesNo = 0;
+turtleSalesEth = 0;
+ranchOwner = msg.sender;
+}
+
+
+// First Time Sale of a Turtle  
+
+    function sellNewTurtle(uint turtleId) public payable  {
+        require(turtleId >= 0 && turtleId <= 15);  //range
+        require(msg.value == 1 ether );                    //payment
+        require (turtlesBunks[turtleId] ==  address(0));  // unowned already
+        
+        turtlesBunks[turtleId] = msg.sender;
+        turtleSalesNo ++;
+        turtleSalesEth  += msg.value ; 
+        turtlesBoarded ++;
+        turtlesOwned--;
+        
+}
+
+
+// --------------------------Operations Department -----------------------------------
+
+    function HowBigBarn() view public returns(uint) {
+        return turtlesBunks.length;
+    }
+
+
+//  retrieves how many Turtles in Pogo's Inventory
+    function InStock() public view returns (uint) {
+        return turtlesOwned;
+}
+
+//   retrieves how many Turtles owned by Customers
+    function CustOwned() public view returns (uint) {
+        return turtlesBoarded;
+    
+}
+
+//  Retrieving listing -lists all 16   0 to 15
+    function ListAllBunks() public view returns (address[16]) {
+     return turtlesBunks;
+} 
+
+
+// --------------------------Accounting Department ------------------------
+    
+   //-------Bank Balance
+    function bankBalance() public view returns (uint) {
+     return this.balance;
+}
+
+// ---------Empty the Bank 
+// can anyone can rob Pogo?.
+
+    function clearBank() public returns (uint) {
+     ranchOwner.transfer(this.balance);
+    
+}
+
+// ---------------------------------Marketing Dept ---------------------
+
+//-------Total Bought in Number
+    function HowManyBought() public view returns (uint) {
+       return turtleSalesNo;
+}
+//------Tot sales in ETH
+// this should stick even after Pogo takes out cash to pay bills
+
+    function HowMuchSold() public view returns (uint) {
+      return turtleSalesEth;
+
+}
+
+//---Price now
+    function CurrentPrice() public view returns (uint) {
+     return turtlePrice;
+}
+
+ 
+
+// -----------------------------Corporate --------------------
+
+
+
+//-----Who am I
+    function WhoAm_I() public view returns (address){
+      return msg.sender;
+  }
+  
+  //-------who is this Pogo,  this dealer of Turtles 
+    function WhosPogo() public view returns(address) {
+        return ranchOwner;      //creator of contract
+}
+
+}
